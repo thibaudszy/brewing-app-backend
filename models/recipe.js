@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       PitchRateInGramsperLiter: { types: DataTypes.FLOAT },
       BoilDurationInMin: { types: DataTypes.INTEGER, allowNull: false },
       FermentationTemperature: { types: DataTypes.FLOAT },
-      comments: { types: DataTypes.FLOAT },
+      comments: { types: DataTypes.TEXT },
     },
     {
       sequelize,

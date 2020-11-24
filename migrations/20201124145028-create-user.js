@@ -16,10 +16,7 @@ module.exports = {
         unique: true,
       },
       password: { type: Sequelize.STRING, allowNull: false },
-      preferredLanguage: {
-        type: Sequelize.ENUM("En-GB, Fr-FR"),
-        allowNull: false,
-      },
+      language: { type: Sequelize.ENUM("En-GB", "Fr-FR"), allowNull: false },
       gender: {
         type: Sequelize.ENUM("male", "female", "other"),
         allowNull: false,

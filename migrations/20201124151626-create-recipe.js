@@ -32,7 +32,7 @@ module.exports = {
       PitchRateInGramsperLiter: { type: Sequelize.FLOAT },
       BoilDurationInMin: { type: Sequelize.INTEGER, allowNull: false },
       FermentationTemperature: { type: Sequelize.FLOAT },
-      comments: { type: Sequelize.FLOAT },
+      comments: { type: Sequelize.TEXT },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
