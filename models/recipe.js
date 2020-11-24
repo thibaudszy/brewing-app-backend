@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       recipe.hasMany(models.maltAdditon);
       recipe.hasMany(models.hopAddition);
       recipe.hasMany(models.mashStep);
+      recipe.hasMany(models.brew);
     }
   }
   recipe.init(
