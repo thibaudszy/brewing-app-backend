@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         as: "recipeInLibrary",
       });
+      recipe.hasMany(models.maltAdditon);
+      recipe.hasMany(models.hopAddition);
+      recipe.hasMany(models.mashStep);
     }
   }
   recipe.init(
