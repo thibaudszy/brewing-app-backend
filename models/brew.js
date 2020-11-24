@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       brew.belongsTo(model.user);
       brew.belongsTo(models.recipe);
+      brew.hasMany(models.measurement);
     }
   }
   brew.init(
