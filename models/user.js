@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         as: "recipeInLibrary",
       });
+      user.hasMany(models.brew);
     }
   }
   user.init(
