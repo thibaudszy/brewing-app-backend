@@ -11,7 +11,7 @@ module.exports = (sequelize, Datatype) => {
       recipe.belongsTo(models.user, { as: "author" });
       recipe.belongsToMany(models.user, {
         through: "usersToRecipes",
-        foreignKey: "userId",
+        foreignKey: "recipeId",
         as: "recipeInLibrary",
       });
       recipe.hasMany(models.maltAddition);
@@ -23,7 +23,7 @@ module.exports = (sequelize, Datatype) => {
   recipe.init(
     {
       name: { type: Datatype.STRING, allowNull: false },
-      userId: { type: Datatype.INTEGER, allowNull: false },
+      authorId: { type: Datatype.INTEGER, allowNull: false },
       imageURL: { type: Datatype.STRING },
       description: { type: Datatype.TEXT },
       ABV: { type: Datatype.FLOAT, allowNull: false },
