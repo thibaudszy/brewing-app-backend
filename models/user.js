@@ -1,6 +1,6 @@
 "use strict";
 const { Sequelize, Model, DataTypes } = require("sequelize");
-const { APP_LANGUAGES, APP_LANGUAGES } = require("../config/constants");
+const { APP_LANGUAGES } = require("../config/constants");
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
