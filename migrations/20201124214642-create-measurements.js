@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.ENUM(
           "mash",
           "strong wort",
-          "beggining of boil",
+          "start of boil",
           "end of boil",
           "fermentation",
           "conditioning"
