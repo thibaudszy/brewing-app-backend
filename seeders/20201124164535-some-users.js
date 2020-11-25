@@ -1,5 +1,6 @@
 "use strict";
-
+const bcrypt = require("bcrypt");
+const { SALT_ROUNDS } = require("../config/constants");
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(
@@ -9,7 +10,7 @@ module.exports = {
           firstName: "Thibaud",
           lastName: "Szymczak",
           email: "thibaudszy@gmail.com",
-          password: "1234",
+          password: bcrypt.hashSync("1234", SALT_ROUNDS),
           language: "En-GB",
           gender: "male",
           createdAt: new Date(),
@@ -19,7 +20,7 @@ module.exports = {
           firstName: "Bob",
           lastName: "Lenon",
           email: "boblenon@gmail.com",
-          password: "1234",
+          password: bcrypt.hashSync("1234", SALT_ROUNDS),
           language: "En-GB",
           gender: "male",
           createdAt: new Date(),
@@ -29,7 +30,7 @@ module.exports = {
           firstName: "Emma",
           lastName: "Lupulus",
           email: "a@gmail.com",
-          password: "1234",
+          password: bcrypt.hashSync("1234", SALT_ROUNDS),
           language: "Fr-FR",
           gender: "female",
           createdAt: new Date(),

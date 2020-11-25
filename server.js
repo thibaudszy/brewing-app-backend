@@ -1,15 +1,21 @@
 const express = require("express");
+const corsMiddleware = require("cors");
+const authRouter = require("./routers/auth");
 
 const app = express();
 const PORT = 4000;
 // import orderRouter from "./routers/order";
 // import productRouter from "./routers/product";
-const cors = require("cors");
-
-app.use(cors());
-app.use(express.json());
+//const cors = require("cors");
 
 // app.use("/orders", orderRouter);
 // app.use("/products", productRouter);
 
 app.listen(PORT, () => console.log("server up and listening"));
+
+const bodyParserMiddleWare = express.json();
+app.use(bodyParserMiddleWare);
+
+app.use(corsMiddleware());
+app.use(express.json());
+app.use("/", authRouter);

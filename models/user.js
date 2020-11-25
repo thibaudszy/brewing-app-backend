@@ -9,11 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       user.hasMany(models.recipe, { as: "author" });
-      user.belongsToMany(models.recipe, {
-        through: "usersToRecipes",
-        foreignKey: "userId",
-        as: "recipeInLibrary",
-      });
+      user.hasMany(models.recipe);
       user.hasMany(models.brew);
     }
   }

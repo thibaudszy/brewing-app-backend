@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      brew.belongsTo(model.user);
+      brew.belongsTo(models.user);
       brew.belongsTo(models.recipe);
-      brew.hasMany(models.measurement);
+      // brew.hasMany(models.measurement);
     }
   }
   brew.init(

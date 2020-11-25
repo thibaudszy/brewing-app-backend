@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       name: { type: DataTypes.STRING, allowNull: false },
       alphaAcidContent: DataTypes.FLOAT,
       percentageAlphaAcidsFromAddition: DataTypes.FLOAT,
-      timeOfAdditionInMinBeforeEndOfBoil: DataTypes.INTEGER,
+      timeOfAdditionInMinBeforeEndOfBoil: { type: DataTypes.INTEGER },
       isDryHop: { type: DataTypes.BOOLEAN, allowNull: false },
-      dryHopTimingInPercentageAF: Sequelize.INTEGER,
+      dryHopTimingInPercentageAF: { type: DataTypes.INTEGER },
     },
 
     {
