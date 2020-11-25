@@ -1,6 +1,8 @@
 const express = require("express");
 const corsMiddleware = require("cors");
 const authRouter = require("./routers/auth");
+const recipesRouter = require("./routers/recipes");
+const usersRouter = require("./routers/users");
 
 const app = express();
 const PORT = 4000;
@@ -19,3 +21,5 @@ app.use(bodyParserMiddleWare);
 app.use(corsMiddleware());
 app.use(express.json());
 app.use("/", authRouter);
+app.use("/recipes", recipesRouter);
+app.use("/users", usersRouter);

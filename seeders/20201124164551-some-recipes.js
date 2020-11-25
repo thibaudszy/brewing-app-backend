@@ -7,7 +7,7 @@ module.exports = {
       [
         {
           name: "West Coast IPA",
-          author: 1,
+          authorId: 1,
           imageURL: "https://bit.ly/wcipa1010101",
           description:
             "Bitter and aromatic. Uses a lot of vienna malt for a good malt body. The Citra and Chinook gives it a typical aroma of American IPAs.",
@@ -29,7 +29,7 @@ module.exports = {
         },
         {
           name: "The Awesome stout",
-          author: 2,
+          authorId: 2,
           imageURL: "https://bit.ly/2J3cFm2",
           description: `Stout is a dark, top-fermented beer with a number of variations, including dry stout, oatmeal stout, milk stout, and imperial stout. 
             The first known use of the word stout for beer was in a document dated 1677 found in the Egerton Manuscripts, the sense being that a "stout beer" was a strong beer, 
