@@ -1,5 +1,6 @@
 "use strict";
 const { Sequelize, Model, DataTypes } = require("sequelize");
+const { APP_LANGUAGES, APP_LANGUAGES } = require("../config/constants");
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -19,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       lastName: { type: DataTypes.STRING, allowNull: false },
       email: { type: DataTypes.STRING, allowNull: false, unique: true },
       password: { type: DataTypes.STRING, allowNull: false },
-      language: { type: DataTypes.ENUM("En-GB", "Fr-FR"), allowNull: false },
+      language: { type: DataTypes.ENUM([...APP_LANGUAGES]), allowNull: false },
       gender: {
         type: DataTypes.ENUM("male", "female", "other"),
         allowNull: false,

@@ -1,4 +1,7 @@
 "use strict";
+
+const { APP_LANGUAGES } = require("../config/constants");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("users", {
@@ -16,7 +19,7 @@ module.exports = {
         unique: true,
       },
       password: { type: Sequelize.STRING, allowNull: false },
-      language: { type: Sequelize.ENUM("En-GB", "Fr-FR"), allowNull: false },
+      language: { type: Sequelize.ENUM(...APP_LANGUAGES), allowNull: false },
       gender: {
         type: Sequelize.ENUM("male", "female", "other"),
         allowNull: false,
