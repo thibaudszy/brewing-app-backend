@@ -25,7 +25,7 @@ router.get("/", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.get("/:recipeId", authMiddleware, async (req, res, next) => {
+router.get("/recipe/:recipeId", authMiddleware, async (req, res, next) => {
   const recipeId = req.params.recipeId;
   try {
     const recipe = await Recipe.findByPk(recipeId, {
@@ -33,6 +33,11 @@ router.get("/:recipeId", authMiddleware, async (req, res, next) => {
         { model: MaltAddition },
         { model: HopAddition },
         { model: MashStep },
+        {
+          model: User,
+          as: "author",
+          attributes: ["id", "firstName", "lastName"],
+        },
       ],
     });
 
@@ -41,6 +46,7 @@ router.get("/:recipeId", authMiddleware, async (req, res, next) => {
     next(e);
   }
 });
+
 router.post("/", authMiddleware, async (req, res, next) => {
   const authorId = req.user.id;
   const {

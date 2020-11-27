@@ -8,14 +8,33 @@ const HopAddition = require("../models").hopAddition;
 const MashStep = require("../models").mashStep;
 
 const router = new Router();
-router.get("/:userId/library", authMiddleware, async (req, res, next) => {
-  const userId = req.params.userId;
+
+router.get("/library", authMiddleware, async (req, res, next) => {
+  const userIdReq = req.user.dataValues["id"];
+  console.log(req.user);
+
   try {
-    const recipesInUserLibrary = await User.findByPk(userId, {
-      include: [{ model: Recipe, as: "recipesInLibrary" }],
+    const request = await User.findByPk(userIdReq, {
+      include: {
+        model: Recipe,
+        as: "recipeInLibrary",
+        attributes: [
+          "id",
+          "name",
+          "ABV",
+          "colorInEBC",
+          "imageURL",
+          "description",
+        ],
+        include: {
+          model: User,
+          as: "author",
+          attributes: ["firstName", "lastName"],
+        },
+      },
     });
 
-    res.json(recipesInUserLibrary);
+    res.json(request.recipeInLibrary);
   } catch (e) {
     next(e);
   }
