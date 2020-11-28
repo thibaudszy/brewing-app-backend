@@ -38,6 +38,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      dryHopRateInGramsPerLitre: { type: Sequelize.FLOAT },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

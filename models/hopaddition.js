@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       timeOfAdditionInMinBeforeEndOfBoil: { type: DataTypes.INTEGER },
       isDryHop: { type: DataTypes.BOOLEAN, allowNull: false },
       dryHopTimingInPercentageAF: { type: DataTypes.INTEGER },
+      dryHopRateInGramsPerLitre: { type: DataTypes.FLOAT },
     },
 
     {
