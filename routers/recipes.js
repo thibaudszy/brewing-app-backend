@@ -12,11 +12,11 @@ const router = new Router();
 router.get("/", authMiddleware, async (req, res, next) => {
   try {
     const allRecipes = await Recipe.findAll({
-      include: [
-        { model: MaltAddition },
-        { model: HopAddition },
-        { model: MashStep },
-      ],
+      include: {
+        model: User,
+        as: "author",
+        attributes: ["id", "firstName", "lastName"],
+      },
     });
 
     res.json(allRecipes);
