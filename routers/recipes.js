@@ -25,6 +25,36 @@ router.get("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.get("/not-in-library", authMiddleware, async (req, res, next) => {
+  const requestUserId = req.user.id;
+  try {
+    const allRecipes = await Recipe.findAll({
+      include: [
+        {
+          model: User,
+          as: "recipeInLibrary",
+          attributes: ["id"],
+        },
+        {
+          model: User,
+          as: "author",
+          attributes: ["id", "firstName", "lastName"],
+        },
+      ],
+    });
+    const recipesNotInUserLibrary = allRecipes.filter(
+      ({ recipeInLibrary }) =>
+        //block returns true if user does not have the recipe in his library
+        !recipeInLibrary
+          .map(({ usersToRecipes }) => usersToRecipes.userId)
+          .includes(requestUserId)
+    );
+    res.json(recipesNotInUserLibrary);
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.get("/recipe/:recipeId", authMiddleware, async (req, res, next) => {
   const recipeId = req.params.recipeId;
   try {
