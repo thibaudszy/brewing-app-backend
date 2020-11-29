@@ -17,7 +17,7 @@ module.exports = {
           key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        onDelete: "SET NULL",
       },
       imageURL: { type: Sequelize.STRING },
       description: { type: Sequelize.TEXT },
