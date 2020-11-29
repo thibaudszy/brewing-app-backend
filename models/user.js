@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       user.hasMany(models.recipe, { foreignKey: "authorId", as: "author" });
       user.belongsToMany(models.recipe, {
-        through: "usersToRecipes",
+        through: "libraries",
         foreignKey: "userId",
         as: "recipeInLibrary",
       });

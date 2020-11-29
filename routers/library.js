@@ -4,7 +4,7 @@ const Recipe = require("../models").recipe;
 const User = require("../models").user;
 const authMiddleware = require("../auth/middleware");
 
-const UserToRecipe = require("../models").userToRecipe;
+const UserToRecipe = require("../models").library;
 
 const router = new Router();
 
@@ -12,7 +12,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
   const userId = req.user.id;
   const { recipeId } = req.body;
   try {
-    const dbResponse = await UserToRecipe.create({
+    const dbResponse = await Library.create({
       userId,
       recipeId,
     });
