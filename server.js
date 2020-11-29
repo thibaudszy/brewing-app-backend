@@ -3,6 +3,7 @@ const corsMiddleware = require("cors");
 const authRouter = require("./routers/auth");
 const recipesRouter = require("./routers/recipes");
 const usersRouter = require("./routers/users");
+const usersToRecipesRouter = require("./routers/usertolibrary");
 
 const app = express();
 const PORT = 4000;
@@ -23,3 +24,4 @@ app.use(express.json());
 app.use("/", authRouter);
 app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);
+app.use("/users-to-recipes", usersToRecipesRouter);
