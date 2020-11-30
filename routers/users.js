@@ -3,6 +3,7 @@ const { Router } = express;
 const Recipe = require("../models").recipe;
 const User = require("../models").user;
 const authMiddleware = require("../auth/middleware");
+const Library = require("../models").library;
 const MaltAddition = require("../models/index").maltAddition;
 const HopAddition = require("../models").hopAddition;
 const MashStep = require("../models").mashStep;
@@ -11,7 +12,6 @@ const router = new Router();
 
 router.get("/library", authMiddleware, async (req, res, next) => {
   const userIdReq = req.user.dataValues["id"];
-  console.log(req.user);
 
   try {
     const request = await User.findByPk(userIdReq, {
@@ -26,6 +26,7 @@ router.get("/library", authMiddleware, async (req, res, next) => {
           "imageURL",
           "description",
         ],
+
         include: {
           model: User,
           as: "author",

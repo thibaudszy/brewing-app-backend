@@ -1,4 +1,6 @@
 "use strict";
+const User = require("../models").user;
+const Recipe = require("../models").recipe;
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class library extends Model {
@@ -14,8 +16,19 @@ module.exports = (sequelize, DataTypes) => {
   }
   library.init(
     {
-      userId: { type: DataTypes.INTEGER, allowNull: false },
-      recipeId: { type: DataTypes.INTEGER, allowNull: false },
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      recipeId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
       sequelize,
