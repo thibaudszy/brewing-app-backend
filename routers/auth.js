@@ -31,22 +31,13 @@ router.post("/login", async (req, res, next) => {
     const token = toJWT({ userId: user.id });
     return res.send({ token, ...user.dataValues });
   } catch (error) {
-    //console.log(error);
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
 });
 
 router.post("/signup", async (req, res, next) => {
   const { email, password, firstName, lastName, language, gender } = req.body;
-  console.log(
-    "email, password, firstName, lastName, language, gender:",
-    email,
-    password,
-    firstName,
-    lastName,
-    language,
-    gender
-  );
+
   if (!email || !password || !firstName || !lastName) {
     return res.status(400).send("Please provide an email, password and a name");
   }

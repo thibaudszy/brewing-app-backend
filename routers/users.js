@@ -12,7 +12,6 @@ const router = new Router();
 
 router.get("/library", authMiddleware, async (req, res, next) => {
   const userIdReq = req.user.dataValues["id"];
-  console.log(req.user);
 
   try {
     const request = await User.findByPk(userIdReq, {

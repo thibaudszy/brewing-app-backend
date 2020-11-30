@@ -6,7 +6,7 @@ const authMiddleware = require("../auth/middleware");
 const MaltAddition = require("../models/index").maltAddition;
 const HopAddition = require("../models").hopAddition;
 const MashStep = require("../models").mashStep;
-const UserToRecipe = require("../models").userToRecipe;
+const Library = require("../models").library;
 
 const router = new Router();
 router.get("/", authMiddleware, async (req, res, next) => {
@@ -27,6 +27,7 @@ router.get("/", authMiddleware, async (req, res, next) => {
 
 router.get("/not-in-library", authMiddleware, async (req, res, next) => {
   const requestUserId = req.user.id;
+
   try {
     const allRecipes = await Recipe.findAll({
       include: [
@@ -42,11 +43,12 @@ router.get("/not-in-library", authMiddleware, async (req, res, next) => {
         },
       ],
     });
+
     const recipesNotInUserLibrary = allRecipes.filter(
       ({ recipeInLibrary }) =>
         //block returns true if user does not have the recipe in his library
         !recipeInLibrary
-          .map(({ usersToRecipes }) => usersToRecipes.userId)
+          .map(({ libraries }) => libraries.userId)
           .includes(requestUserId)
     );
     res.json(recipesNotInUserLibrary);
