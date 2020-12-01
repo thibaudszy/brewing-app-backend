@@ -81,6 +81,7 @@ router.get("/recipe/:recipeId", authMiddleware, async (req, res, next) => {
 
 router.post("/", authMiddleware, async (req, res, next) => {
   const authorId = req.user.id;
+  console.log("req.body", req.body);
   const {
     name,
     imageURL,
@@ -96,8 +97,11 @@ router.post("/", authMiddleware, async (req, res, next) => {
     PitchRateInGramsperLiter,
     BoilDurationInMin,
     FermentationTemperature,
+    mashSteps,
+    maltAdditions,
+    hopAdditions,
     comments,
-  } = req.body;
+  } = req.body.recipeToPost;
   try {
     const recipe = await Recipe.create({
       name,
@@ -117,7 +121,28 @@ router.post("/", authMiddleware, async (req, res, next) => {
       FermentationTemperature,
       comments,
     });
-
+    const recipeId = recipe.id;
+    Promise.all(
+      maltAdditions.map(async (maltAddition) => {
+        const response = await MaltAddition.create({
+          recipeId,
+          ...maltAddition,
+        });
+      }),
+      hopAdditions.map(async (hopAddition) => {
+        const response = await HopAddition.create({
+          recipeId,
+          ...hopAddition,
+        });
+      }),
+      mashSteps.map(async (mashStep, index) => {
+        const response = await MashStep.create({
+          recipeId,
+          stepNo: index,
+          ...mashStep,
+        });
+      })
+    );
     res.status(200).send("Recipe added to the library");
   } catch (e) {
     next(e);
