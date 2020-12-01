@@ -4,6 +4,7 @@ const authRouter = require("./routers/auth");
 const recipesRouter = require("./routers/recipes");
 const usersRouter = require("./routers/users");
 const LibrariesRouter = require("./routers/library");
+const BrewsRouter = require("./routers/brews");
 
 const app = express();
 const PORT = 4000;
@@ -25,3 +26,4 @@ app.use("/", authRouter);
 app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);
 app.use("/libraries", LibrariesRouter);
+app.use("/brews", BrewsRouter);
