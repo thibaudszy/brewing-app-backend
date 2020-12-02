@@ -7,7 +7,7 @@ const LibrariesRouter = require("./routers/library");
 const BrewsRouter = require("./routers/brews");
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 // import orderRouter from "./routers/order";
 // import productRouter from "./routers/product";
 //const cors = require("cors");
