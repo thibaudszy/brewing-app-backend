@@ -143,7 +143,9 @@ router.post("/", authMiddleware, async (req, res, next) => {
         });
       })
     );
-    res.status(200).send("Recipe added to the library");
+    res
+      .status(200)
+      .send({ message: "Recipe added to the library", addedRecipe: recipe });
   } catch (e) {
     next(e);
   }
